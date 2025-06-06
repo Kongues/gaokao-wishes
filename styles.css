@@ -1,0 +1,315 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* 信封样式 */
+.envelope {
+    width: 300px;
+    height: 200px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    animation: float 3s ease-in-out infinite;
+}
+
+.envelope:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.envelope-front {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.seal {
+    width: 60px;
+    height: 60px;
+    background-color: #f1c40f;
+    border-radius: 50%;
+    position: absolute;
+    top: 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+}
+
+.seal:before {
+    content: "✦";
+    position: absolute;
+    font-size: 30px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #e74c3c;
+}
+
+.envelope-text {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    letter-spacing: 5px;
+}
+
+.envelope-hint {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 20px;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+    100% { opacity: 0.6; transform: scale(1); }
+}
+
+/* 信封打开动画 */
+.envelope-open {
+    animation: openEnvelope 1.5s forwards;
+}
+
+@keyframes openEnvelope {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1) rotateY(90deg); }
+    100% { transform: scale(0) rotateY(180deg); opacity: 0; }
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 40px;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.title {
+    font-family: 'Ma Shan Zheng', cursive;
+    font-size: 3.5rem;
+    color: #e74c3c;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+    letter-spacing: 5px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px #fff, 0 0 10px #e74c3c; }
+    to { text-shadow: 0 0 10px #fff, 0 0 20px #e74c3c; }
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #3498db;
+    position: relative;
+    display: inline-block;
+}
+
+.subtitle:before, .subtitle:after {
+    content: "✦";
+    color: #f1c40f;
+    margin: 0 10px;
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}
+
+.message {
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.message p {
+    margin-bottom: 15px;
+}
+
+.wishes {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.wishes li {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+.wishes li:hover {
+    transform: translateX(10px);
+}
+
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.signature {
+    margin-top: 30px;
+    font-style: italic;
+    text-align: right;
+}
+
+.name {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.lantern {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background-color: #e74c3c;
+    border-radius: 30px;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.5);
+}
+
+.lantern:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 15px;
+    background-color: #f39c12;
+    top: -5px;
+    border-radius: 10px;
+}
+
+.lantern:after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    background-color: #f1c40f;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.lantern.left {
+    top: 20px;
+    left: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.lantern.right {
+    top: 20px;
+    right: 20px;
+    animation: float 3.5s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .title {
+        font-size: 2.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .message {
+        font-size: 1rem;
+    }
+    
+    .wishes li {
+        font-size: 1.1rem;
+    }
+    
+    .envelope {
+        width: 250px;
+        height: 170px;
+    }
+    
+    .envelope-text {
+        font-size: 2.5rem;
+    }
+}
+
+/* 彩带效果 */
+.confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #f1c40f;
+    opacity: 0.7;
+    animation: confetti-fall 5s linear infinite;
+}
+
+@keyframes confetti-fall {
+    0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+} 
